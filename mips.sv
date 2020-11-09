@@ -76,6 +76,7 @@ module maindec(input  logic [5:0] op,
       6'b000100: controls <= 9'b000100001; //BEQ
       6'b001000: controls <= 9'b101000000; //ADDI
       6'b000010: controls <= 9'b000000100; //J
+	  6'b001101: controls <= 9'b101000011; //ORI
       default:   controls <= 9'bxxxxxxxxx; //???
     endcase
 endmodule
@@ -88,6 +89,7 @@ module aludec(input  logic [5:0] funct,
     case(aluop)
       2'b00: alucontrol <= 3'b010;  // add
       2'b01: alucontrol <= 3'b110;  // sub
+	  2'b11: alucontrol <= 3'b001;  // or
       default: case(funct)          // RTYPE
           6'b100000: alucontrol <= 3'b010; // ADD
           6'b100010: alucontrol <= 3'b110; // SUB
